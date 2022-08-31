@@ -97,6 +97,7 @@ def Hangman():
                 print("   / \  |")
 
                 print("\n  Dead \n")
+                print(f"The word is {word}")
                 break
         print(f"\nIncorrect Words {incorrect_words}\n")  # Showing used letters
 
