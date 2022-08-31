@@ -1,13 +1,23 @@
 import random
 import string
+from words import words
 
 
 def Hangman():
-    word = random.choice(["India", "Skeler", "Eminem", "Skrillex"]).lower()
-    print(word)
-    valid_words = set(string.ascii_lowercase)
+
     turns = 7
     guessed_words = ""
+    incorrect_words = []
+    # Variables
+
+    word = random.choice(words)  # Chechking Random
+
+    while "-" in word and " " in word:
+        # Checking it again if it contains Space or Highfen
+        word = random.choice(words).lower()
+    # print(word)
+
+    valid_words = set(string.ascii_lowercase)  # English Alphabets
 
     while len(word) > 0:
         main_word = ""
@@ -20,12 +30,13 @@ def Hangman():
 
         if main_word == word:
             print("\n")
-            print(f" Corect it's {main_word}")
-            print("       You Win")
+            print(f" Corect it's {main_word.upper()}")
+            print("    You Win")
             break
 
-        print("Guess the Letter", main_word)
+        print("Guess the Letter", main_word)  # Taking Input
         guess = input()
+
         if guess in valid_words:
             guessed_words += guess
 
@@ -35,6 +46,7 @@ def Hangman():
 
         if guess not in word:
             turns -= 1
+            incorrect_words.append(guess)
 
             if turns == 6:
                 print("5 turns left ")
@@ -86,6 +98,7 @@ def Hangman():
 
                 print("\n  Dead \n")
                 break
+        print(f"\nIncorrect Words {incorrect_words}\n")  # Showing used letters
 
 
 # name = input("Enter your name\n")
